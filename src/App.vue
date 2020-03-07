@@ -1,17 +1,30 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container">
+
+    <h1 class="title has-text-centered">
+      Final EEC
+    </h1>
+
+    <div class="buttons flex-center">
+      <btn-pertanyaan nomor=1 pertanyaan="hello"></btn-pertanyaan>
+      <btn-pertanyaan nomor=2 pertanyaan="hallo"></btn-pertanyaan>
+      <btn-pertanyaan nomor=1 pertanyaan="hello"></btn-pertanyaan>
+      <btn-pertanyaan nomor=2 pertanyaan="hallo"></btn-pertanyaan>
+      <btn-pertanyaan nomor=1 pertanyaan="hello"></btn-pertanyaan>
+      <btn-pertanyaan nomor=2 pertanyaan="hallo"></btn-pertanyaan>
+      <btn-pertanyaan nomor=2 pertanyaan="hallo"></btn-pertanyaan>
+      <btn-pertanyaan nomor=2 pertanyaan="hallo"></btn-pertanyaan>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BtnPertanyaan from './components/ButtonPertanyaan.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    BtnPertanyaan
   }
 }
 </script>
