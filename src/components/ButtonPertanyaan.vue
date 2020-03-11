@@ -1,7 +1,7 @@
 <template>
     <div>
-        <button class="button is-primary is-medium"
-            @click="isCardModalActive = true">
+        <button :class="btnclass"
+            @click="isCardModalActive = true, waktuberkurang(), startTimer()">
             {{ nomor }}
         </button>
 
@@ -16,7 +16,7 @@
                         </div>
                         <div class="media-content">
                             <p class="title is-4">{{ timPenjawab }}</p>
-                            <p class="subtitle is-6">waktu tersisa <strong>60</strong>s</p>
+                            <p class="subtitle is-6">waktu tersisa <strong>{{ waktumenjawab }}</strong>s</p>
                         </div>
                     </div>
 
@@ -24,6 +24,14 @@
                         <p>
                         {{ pertanyaan }}
                         </p>
+                        <div class="buttons">
+                            <button class="button is-success" @click="jawabanbenar()">
+                                Benar
+                            </button>
+                            <button class="button is-danger" @click="salah()">
+                                Salah
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -38,12 +46,30 @@ export default {
         pertanyaan: String,
         kategori: String,
         timPenjawab: String,
-        waktumenjawab: Number
+        propclick: Function
+        // waktumenjawab: Number
     },
     data(){
         return{
             isCardModalActive : false,
-            waktumenjawab: 60
+            btnclass: 'button is-primary',
+            waktumenjawab: 10
+        }
+    },
+    methods:{
+        waktuberkurang(){
+            if(this.waktumenjawab > 0){
+                setInterval(() => {
+                    this.waktumenjawab = this.waktumenjawab - 1
+                }, 1000)
+            } else {
+                this.isCardModalActive = false
+            }
+        },
+        jawabanbenar(){
+            this.btnclass = 'button is-info',
+            this.isCardModalActive = false,
+            console.log(this.btnclass)
         }
     }
 }
