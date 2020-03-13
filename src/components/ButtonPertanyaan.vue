@@ -1,11 +1,11 @@
 <template>
     <div>
         <button :class="btnclass"
-            @click="isCardModalActive = true, waktuberkurang(), startTimer()">
+            @click="waktuberkurang(), startTimer()">
             {{ nomor }}
         </button>
 
-        <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
+        <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep" v-on:keyup.enter="jawabanbenar">
             <div class="card">
                 <div class="card-content">
                     <div class="media">
@@ -28,7 +28,7 @@
                             <button class="button is-success" @click="jawabanbenar()">
                                 Benar
                             </button>
-                            <button class="button is-danger" @click="salah()">
+                            <button class="button is-danger" @click="jawabansalah()">
                                 Salah
                             </button>
                         </div>
@@ -46,31 +46,58 @@ export default {
         pertanyaan: String,
         kategori: String,
         timPenjawab: String,
-        propclick: Function
+        propclick: Function,
+        btnclass : String
         // waktumenjawab: Number
     },
     data(){
         return{
             isCardModalActive : false,
-            btnclass: 'button is-primary',
+            // btnclass: 'button is-primary',
             waktumenjawab: 10
         }
     },
     methods:{
         waktuberkurang(){
-            if(this.waktumenjawab > 0){
-                setInterval(() => {
-                    this.waktumenjawab = this.waktumenjawab - 1
-                }, 1000)
+            if(this.timPenjawab !== null){
+                this.isCardModalActive = true
+                if(this.waktumenjawab > 0){
+                    var x = setInterval(() => {
+                                this.waktumenjawab = this.waktumenjawab - 1
+                                if(this.waktumenjawab === 0){
+                                    this.isCardModalActive = false
+                                    // this.waktumenjawab = 10
+                                }
+                            }, 1000)
+                    // this.waktumenjawab = 10
+                } else {
+                    this.waktumenjawab = 60
+                }
             } else {
-                this.isCardModalActive = false
+                this.$buefy.toast.open({
+                    duration: 5000,
+                    message: `Silakan memlih tim penjawab`,
+                    position: 'is-bottom',
+                    type: 'is-danger'
+                })
             }
         },
         jawabanbenar(){
-            this.btnclass = 'button is-info',
+            if(this.timPenjawab === "Flint"){
+                return this.btnclass = "button is-success"
+            }
             this.isCardModalActive = false,
             console.log(this.btnclass)
+        },
+        jawabansalah(){
+            this.isCardModalActive = false
         }
     }
 }
 </script>
+
+<style lang="scss">
+.content{
+    text-align: left;
+}
+</style>

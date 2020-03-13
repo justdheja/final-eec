@@ -3,9 +3,9 @@
 
     <h1 class="title has-text-centered">
       Final EEC <br>
-      <span id="minutes">{{ minutes }}</span>
+      <!-- <span id="minutes">{{ minutes }}</span>
       <span id="middle">:</span>
-      <span id="seconds">{{ seconds }}</span>
+      <span id="seconds">{{ seconds }}</span> -->
     </h1>
 
     <div class="block">
@@ -21,17 +21,13 @@
         </b-radio>
     </div>
 
-    <Timer date="03 April 2020 21:00"></Timer>
+    <!-- <Timer date="03 April 2020 21:00"></Timer> -->
 
     <div class="buttons flex-center">
-      <btn-pertanyaan nomor=1 pertanyaan="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae sed quo dicta odit. Ipsa, quisquam. Maiores, temporibus libero facere porro dolorum esse explicabo eum iusto amet quibusdam, facilis suscipit pariatur." waktumenjawab=90 :timPenjawab="timpenjawab"></btn-pertanyaan>
-      <btn-pertanyaan nomor=2 pertanyaan="hallo"></btn-pertanyaan>
-      <btn-pertanyaan nomor=3 pertanyaan="hello"></btn-pertanyaan>
-      <btn-pertanyaan nomor=4 pertanyaan="hallo"></btn-pertanyaan>
-      <btn-pertanyaan nomor=5 pertanyaan="hello"></btn-pertanyaan>
-      <btn-pertanyaan nomor=6 pertanyaan="hallo"></btn-pertanyaan>
-      <btn-pertanyaan nomor=7 pertanyaan="hallo"></btn-pertanyaan>
-      <btn-pertanyaan nomor=8 pertanyaan="hallo"></btn-pertanyaan>
+      <btn-pertanyaan nomor=1 pertanyaan="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae sed quo dicta odit. Ipsa, quisquam. Maiores, temporibus libero facere porro dolorum esse explicabo eum iusto amet quibusdam, facilis suscipit pariatur." :timPenjawab="timpenjawab" :btnclass="timclass" :propclick="clickpertanyaan"></btn-pertanyaan>
+
+      <btn-pertanyaan nomor=2 pertanyaan="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae sed quo dicta odit. Ipsa, quisquam. Maiores, temporibus libero facere porro dolorum esse explicabo eum iusto amet quibusdam, facilis suscipit pariatur." :timPenjawab="timpenjawab"></btn-pertanyaan>
+      
     </div>
   </div>
 </template>
@@ -48,13 +44,21 @@ export default {
   },
   data(){
     return{
-      timpenjawab: '',
+      timpenjawab: null,
       timer: null,
       totalTime: 25 * 60,
       resetButton: false,
+      timclass: 'button is-primary'
     }
   },
   methods: {
+        clickpertanyaan: function(){
+          if(this.timpenjawab === "Silver"){
+            this.timclass = "button is-success"
+          } else if(this.timpenjawab === "Flint"){
+            this.timclass = "button is-success"
+          }
+        },
         startTimer: function() {
         this.timer = setInterval(() => this.countdown(), 1000);
         this.resetButton = true;
