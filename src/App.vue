@@ -23,10 +23,8 @@
 
     <!-- <Timer date="03 April 2020 21:00"></Timer> -->
 
-    <div class="buttons flex-center">
-      <btn-pertanyaan nomor=1 pertanyaan="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae sed quo dicta odit. Ipsa, quisquam. Maiores, temporibus libero facere porro dolorum esse explicabo eum iusto amet quibusdam, facilis suscipit pariatur." :timPenjawab="timpenjawab" :btnclass="timclass" :propclick="clickpertanyaan"></btn-pertanyaan>
-
-      <btn-pertanyaan nomor=2 pertanyaan="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae sed quo dicta odit. Ipsa, quisquam. Maiores, temporibus libero facere porro dolorum esse explicabo eum iusto amet quibusdam, facilis suscipit pariatur." :timPenjawab="timpenjawab"></btn-pertanyaan>
+    <div class="buttons block flex-center" v-for="(pertanyaan, index) in foo" :key="index">
+      <btn-pertanyaan :nomor="pertanyaan.no" kategori="fisika" pertanyaan="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae sed quo dicta odit. Ipsa, quisquam. Maiores, temporibus libero facere porro dolorum esse explicabo eum iusto amet quibusdam, facilis suscipit pariatur." :timPenjawab="timpenjawab" :btnclass="timclass" ></btn-pertanyaan>
       
     </div>
   </div>
@@ -48,16 +46,23 @@ export default {
       timer: null,
       totalTime: 25 * 60,
       resetButton: false,
-      timclass: 'button is-primary'
+      timclass: 'button',
+      foo: [
+        {
+          no: "1",
+          pertanyaan: "hello"
+        },
+        {
+          no: "2",
+          pertanyaan: "hello"
+        },
+
+      ]
     }
   },
   methods: {
-        clickpertanyaan: function(){
-          if(this.timpenjawab === "Silver"){
-            this.timclass = "button is-success"
-          } else if(this.timpenjawab === "Flint"){
-            this.timclass = "button is-success"
-          }
+        clickhandler(button){
+          console.log(button.pertanyaan)
         },
         startTimer: function() {
         this.timer = setInterval(() => this.countdown(), 1000);
@@ -111,5 +116,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.buttons {
+  display: inline
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <button :class="btnclass"
-            @click="waktuberkurang(), startTimer()">
+            @click="waktuberkurang()">
             {{ nomor }}
         </button>
 
@@ -21,6 +21,10 @@
                     </div>
 
                     <div class="content">
+                        <div class="subheading">
+                            Kategori: <strong>{{ kategori }}</strong>
+                        </div>
+                        <br>
                         <p>
                         {{ pertanyaan }}
                         </p>
@@ -42,11 +46,13 @@
 <script>
 export default {
     props: {
-        nomor: Number,
+        nomor: String,
         pertanyaan: String,
         kategori: String,
         timPenjawab: String,
-        propclick: Function,
+        propclick: {
+            type: Function
+        },
         btnclass : String
         // waktumenjawab: Number
     },
@@ -83,6 +89,7 @@ export default {
             }
         },
         jawabanbenar(){
+            this.propclick()
             if(this.timPenjawab === "Flint"){
                 return this.btnclass = "button is-success"
             }
