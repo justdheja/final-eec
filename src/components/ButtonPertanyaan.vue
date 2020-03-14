@@ -15,16 +15,34 @@
                             </figure>
                         </div>
                         <div class="media-content">
-                            <p class="title is-4">{{ timPenjawab }}</p>
+                            <p class="title is-4">{{ kategori }}</p>
                             <p class="subtitle is-6">waktu tersisa <strong>{{ waktumenjawab }}</strong>s</p>
                         </div>
                     </div>
 
                     <div class="content">
-                        <div class="subheading">
-                            Kategori: <strong>{{ kategori }}</strong>
+                        <div class="block">
+                            <b-radio v-model="timPenjawab"
+                                name="name"
+                                native-value="A">
+                                A
+                            </b-radio>
+                            <b-radio v-model="timPenjawab"
+                                name="name"
+                                native-value="B">
+                                B
+                            </b-radio>
+                            <b-radio v-model="timPenjawab"
+                                name="name"
+                                native-value="C">
+                                C
+                            </b-radio>
+                            <b-radio v-model="timPenjawab"
+                                name="name"
+                                native-value= null>
+                                
+                            </b-radio>
                         </div>
-                        <br>
                         <p>
                         {{ pertanyaan }}
                         </p>
@@ -53,19 +71,18 @@ export default {
         propclick: {
             type: Function
         },
-        btnclass : String
+        // btnclass : String
         // waktumenjawab: Number
     },
     data(){
         return{
             isCardModalActive : false,
-            // btnclass: 'button is-primary',
-            waktumenjawab: 10
+            btnclass: 'button is-primary',
+            waktumenjawab: 60
         }
     },
     methods:{
         waktuberkurang(){
-            if(this.timPenjawab !== null){
                 this.isCardModalActive = true
                 if(this.waktumenjawab > 0){
                     var x = setInterval(() => {
@@ -79,22 +96,22 @@ export default {
                 } else {
                     this.waktumenjawab = 60
                 }
-            } else {
-                this.$buefy.toast.open({
-                    duration: 5000,
-                    message: `Silakan memlih tim penjawab`,
-                    position: 'is-bottom',
-                    type: 'is-danger'
-                })
-            }
+            
         },
         jawabanbenar(){
-            this.propclick()
-            if(this.timPenjawab === "Flint"){
-                return this.btnclass = "button is-success"
+            if(this.timPenjawab === "A"){
+                this.nomor = "A"
+                this.btnclass = "button is-danger"
+            } else if(this.timPenjawab === "B"){
+                this.nomor = "B"
+                this.btnclass = "button is-warning"
+            } else if(this.timPenjawab === "C"){
+                this.nomor = "C"
+                this.btnclass = "button is-success"
             }
             this.isCardModalActive = false,
             console.log(this.btnclass)
+            
         },
         jawabansalah(){
             this.isCardModalActive = false
