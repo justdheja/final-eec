@@ -15,12 +15,34 @@
                             </figure>
                         </div>
                         <div class="media-content">
-                            <p class="title is-4">{{ timPenjawab }}</p>
+                            <p class="title is-4">{{ kategori }}</p>
                             <p class="subtitle is-6">waktu tersisa <strong>{{ waktumenjawab }}</strong>s</p>
                         </div>
                     </div>
 
                     <div class="content">
+                        <div class="block">
+                            <b-radio v-model="timPenjawab"
+                                name="name"
+                                native-value="A">
+                                A
+                            </b-radio>
+                            <b-radio v-model="timPenjawab"
+                                name="name"
+                                native-value="B">
+                                B
+                            </b-radio>
+                            <b-radio v-model="timPenjawab"
+                                name="name"
+                                native-value="C">
+                                C
+                            </b-radio>
+                            <b-radio v-model="timPenjawab"
+                                name="name"
+                                native-value= null>
+                                
+                            </b-radio>
+                        </div>
                         <p>
                         {{ pertanyaan }}
                         </p>
@@ -42,7 +64,7 @@
 <script>
 export default {
     props: {
-        nomor: Number,
+        nomor: String,
         pertanyaan: String,
         kategori: String,
         timPenjawab: String,
@@ -59,7 +81,6 @@ export default {
     },
     methods:{
         waktuberkurang(){
-            if(this.timPenjawab !== null){
                 this.isCardModalActive = true
                 if(this.waktumenjawab > 0){
                     var x = setInterval(() => {
@@ -73,21 +94,22 @@ export default {
                 } else {
                     this.waktumenjawab = 60
                 }
-            } else {
-                this.$buefy.toast.open({
-                    duration: 5000,
-                    message: `Silakan memlih tim penjawab`,
-                    position: 'is-bottom',
-                    type: 'is-danger'
-                })
-            }
+            
         },
         jawabanbenar(){
-            if(this.timPenjawab === "Flint"){
-                return this.btnclass = "button is-success"
+            if(this.timPenjawab === "A"){
+                this.nomor = "A"
+                this.btnclass = "button is-dark"
+            } else if(this.timPenjawab === "B"){
+                this.nomor = "B"
+                this.btnclass = "button is-dark"
+            } else if(this.timPenjawab === "C"){
+                this.nomor = "C"
+                this.btnclass = "button is-dark"
             }
             this.isCardModalActive = false,
             console.log(this.btnclass)
+            
         },
         jawabansalah(){
             this.isCardModalActive = false

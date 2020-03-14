@@ -8,25 +8,13 @@
       <span id="seconds">{{ seconds }}</span> -->
     </h1>
 
-    <div class="block">
-        <b-radio v-model="timpenjawab"
-            name="name"
-            native-value="Flint">
-            Flint
-        </b-radio>
-        <b-radio v-model="timpenjawab"
-            name="name"
-            native-value="Silver">
-            Silver
-        </b-radio>
-    </div>
-
     <!-- <Timer date="03 April 2020 21:00"></Timer> -->
 
     <div class="buttons flex-center">
-      <btn-pertanyaan nomor=1 pertanyaan="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae sed quo dicta odit. Ipsa, quisquam. Maiores, temporibus libero facere porro dolorum esse explicabo eum iusto amet quibusdam, facilis suscipit pariatur." :timPenjawab="timpenjawab" :btnclass="timclass" :propclick="clickpertanyaan"></btn-pertanyaan>
-
-      <btn-pertanyaan nomor=2 pertanyaan="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae sed quo dicta odit. Ipsa, quisquam. Maiores, temporibus libero facere porro dolorum esse explicabo eum iusto amet quibusdam, facilis suscipit pariatur." :timPenjawab="timpenjawab"></btn-pertanyaan>
+      <btn-pertanyaan nomor="1" pertanyaan="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae sed quo dicta odit. Ipsa, quisquam. Maiores, temporibus libero facere porro dolorum esse explicabo eum iusto amet quibusdam, facilis suscipit pariatur." :timPenjawab="timpenjawab" :btnclass="timclass" :propclick="clickpertanyaan"></btn-pertanyaan>
+      
+      
+      <btn-pertanyaan nomor="2" pertanyaan="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae sed quo dicta odit. Ipsa, quisquam. Maiores, temporibus libero facere porro dolorum esse explicabo eum iusto amet quibusdam, facilis suscipit pariatur." :timPenjawab="timpenjawab" :btnclass="timclass" :propclick="clickpertanyaan"></btn-pertanyaan>
       
     </div>
   </div>
