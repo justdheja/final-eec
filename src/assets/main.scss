@@ -1,11 +1,41 @@
+
 button{
-    margin: 2px;
-    width: 100px;
+    margin: 8px;
+    width: 140px;
+    height: 120px;
+    transition: 0.2s;
+}
+
+button:hover{
+    transform: translateY(-8px);
 }
 
 .buttons{
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-    // display: block;
+    margin: auto;
+    width: 90%;
+}
+
+@font-face{
+    font-family: 'Corporation-Games';
+    src: url('./fonts/Corporation-Games.otf');
+}
+
+@font-face{
+    font-family: 'Gotham';
+    src: url('./fonts/Gotham-Medium.otf');
+}
+
+.corporation-games{
+    font-family: 'Corporation-Games';
+    
+}
+
+.gotham{
+    font-family: 'Gotham';
+}
+
+.title{
+    font-size: 80px;
+    letter-spacing: 10px;
+    color: whitesmoke;
 }
