@@ -129,7 +129,7 @@ export default {
         },
         jawabansalah(){
             this.isCardModalActive = false
-            this.waktumenjawab = 60
+            this.waktumenjawab = 0
         }
     }
 }
