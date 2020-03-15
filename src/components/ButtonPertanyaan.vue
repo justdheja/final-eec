@@ -46,7 +46,7 @@
                             </b-radio>
                         </div>
                         <p>
-                        <img :src="resolve_img_url(picture_src)" alt="">
+                        <img :src="resolve_img_url(picture_src)" alt=""> <br>
                         {{ pertanyaan }}
                         </p>
                         <div class="buttons">
@@ -94,15 +94,19 @@ export default {
         waktuberkurang(){
             this.imgsrc = this.imgsrc + 'logo.png'
                 this.isCardModalActive = true
-                if(this.waktumenjawab > 0){
-                    var x = setInterval(() => {
-                                this.waktumenjawab = this.waktumenjawab - 1
-                                if(this.waktumenjawab === 0){
-                                    this.isCardModalActive = false
-                                    // this.waktumenjawab = 10
-                                }
-                            }, 1000)
-                    // this.waktumenjawab = 10
+                if(this.isCardModalActive = true){
+                    if(this.waktumenjawab > 0){
+                        var x = setInterval(() => {
+                                    this.waktumenjawab = this.waktumenjawab - 1
+                                    if(this.waktumenjawab === 0){
+                                        this.isCardModalActive = false
+                                        // this.waktumenjawab = 10
+                                    }
+                                }, 1000)
+                        // this.waktumenjawab = 10
+                    } else {
+                        this.waktumenjawab = 60
+                    }
                 } else {
                     this.waktumenjawab = 60
                 }
@@ -125,6 +129,7 @@ export default {
         },
         jawabansalah(){
             this.isCardModalActive = false
+            this.waktumenjawab = 60
         }
     }
 }
